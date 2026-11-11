@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Judelyn E. Elvenia — UI/UX Designer & Creative Director</title>
+  
+  <!-- Premium Google Fonts: Syne (Ultra Display) + Clash Grotesk / Space Grotesk + Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       CSS RESET & VARIABLES
+       Theme: Deep Burgundy / Wine Red (#440E14) & Editorial Cream (#F5E9CE)
+       ========================================================================== */
+    :root {
+      --burgundy-deep: #2F0A0E;
+      --burgundy-main: #491018;
+      --burgundy-card: #5A1620;
+      --burgundy-hover: #6D1B27;
+      --burgundy-subtle: rgba(73, 16, 24, 0.08);
+      --burgundy-border: rgba(73, 16, 24, 0.22);
+      
+      --cream-light: #FAF5E8;
+      --cream-main: #F4E8CD;
+      --cream-dark: #E6D4B0;
+      --cream-gold: #FFDE9E;
+      --cream-faded: rgba(244, 232, 205, 0.65);
+      --cream-border: rgba(244, 232, 205, 0.25);
+      
+      --font-display: 'Syne', sans-serif;
+      --font-editorial: 'Italiana', serif;
+      --font-mono: 'Space Grotesk', monospace;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      
+      --radius-editorial: 28px;
+      --radius-pill: 9999px;
+      --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      background-color: var(--burgundy-deep);
+      color: var(--cream-main);
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--burgundy-deep);
+      color: var(--cream-main);
+      overflow-x: hidden;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+    }
+
+    /* Subtle Film Grain Texture Overlay */
+    .film-grain {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Outer Wrapper framing like high-fashion portfolio */
+    .page-wrapper {
+      max-width: 1540px;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+    }
+
+    /* ==========================================================================
+       HERO FRAME (TOP MAROON CONTAINER)
+       ========================================================================== */
+    .hero-editorial-card {
+      background-color: var(--burgundy-main);
+      border-radius: var(--radius-editorial);
+      padding: 32px 48px 56px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Navigation Bar */
+    .editorial-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--cream-border);
+      position: relative;
+      z-index: 10;
+    }
+
+    .brand-logo {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+
+    .brand-logo:hover {
+      transform: scale(1.03);
+    }
+
+    .brand-logo span.dot {
+      color: var(--cream-gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream-faded);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 1.5px;
+      background: var(--cream-gold);
+      transition: width 0.3s var(--transition-smooth);
+    }
+
+    .nav-links a:hover {
+      color: var(--cream-light);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Pill Action Buttons */
+    .btn-pill-cream {
+      background-color: var(--cream-main);
+      color: var(--burgundy-deep);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.35s var(--transition-smooth);
+      border: 1px solid var(--cream-main);
+      cursor: pointer;
+    }
+
+    .btn-pill-cream:hover {
+      background-color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-pill-cream .arrow-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--burgundy-main);
+      color: var(--cream-main);
+      font-size: 0.75rem;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-pill-cream:hover .arrow-icon {
+      transform: translateX(3px) rotate(-45deg);
+    }
+
+    /* Hero Main Layout */
+    .hero-content-grid {
+      display: grid;
+      grid-template-columns: 80px 1.1fr 1fr;
+      gap: 36px;
+      margin-top: 40px;
+      align-items: center;
+      min-height: 520px;
+      position: relative;
+    }
+
+    /* Left Vertical Social Sticky Links */
+    .social-spine {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      justify-content: center;
+      border-right: 1px solid var(--cream-border);
+      padding-right: 20px;
+      height: 100%;
+    }
+
+    .social-spine a {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream-faded);
+      text-decoration: none;
+      transition: all 0.25s ease;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      text-align: center;
+    }
+
+    .social-spine a:hover {
+      color: var(--cream-gold);
+      transform: rotate(180deg) translateY(3px);
+    }
+
+    /* Center: Image Frame / Drop Slot */
+    .hero-portrait-stage {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, #370a0e, #56141d);
+      border: 1px solid var(--cream-border);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .portrait-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: saturate(1.08) contrast(1.02);
+      transition: transform 0.7s var(--transition-smooth);
+    }
+
+    .hero-portrait-stage:hover .portrait-image {
+      transform: scale(1.04);
+    }
+
+    /* Drop / Replace Photo Upload Helper Trigger */
+    .photo-replace-trigger {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--cream-main);
+      padding: 8px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.3s;
+      z-index: 15;
+    }
+
+    .photo-replace-trigger:hover {
+      background: var(--burgundy-main);
+      border-color: var(--cream-gold);
+    }
+
+    /* Spinning Seal Badge */
+    .rotating-badge {
+      position: absolute;
+      bottom: -10px;
+      left: -20px;
+      width: 120px;
+      height: 120px;
+      z-index: 20;
+      cursor: pointer;
+      animation: spinSlow 24s linear infinite;
+    }
+
+    .rotating-badge:hover {
+      animation-play-state: paused;
+    }
+
+    .rotating-badge svg {
+      width: 100%;
+      height: 100%;
+      fill: var(--cream-gold);
+    }
+
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Right: Hero Typography */
+    .hero-text-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 20px;
+    }
+
+    .hero-bio-caps {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      line-height: 1.6;
+      max-width: 460px;
+      color: var(--cream-main);
+      margin-bottom: 28px;
+    }
+
+    .hero-giant-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 5.8vw, 6.2rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--cream-main);
+      position: relative;
+    }
+
+    .hero-giant-title .copyright-symbol {
+      font-size: 0.45em;
+      vertical-align: top;
+      margin-right: 6px;
+      font-family: var(--font-sans);
+      color: var(--cream-gold);
+      font-weight: 400;
+    }
+
+    .hero-giant-title .name-highlight {
+      display: block;
+      color: var(--cream-main);
+      transition: color 0.4s ease;
+    }
+
+    .hero-giant-title:hover .name-highlight {
+      color: var(--cream-gold);
+    }
+
+    .hero-tagline {
+      font-family: var(--font-editorial);
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--cream-gold);
+      margin-top: 18px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ==========================================================================
+       SECTION 2: CREAM EDITORIAL "ABOUT ME" CONTAINER
+       ========================================================================== */
+    .cream-editorial-section {
+      background-color: var(--cream-main);
+      color: var(--burgundy-main);
+      border-radius: var(--radius-editorial);
+      margin-top: 24px;
+      padding: 72px 56px 84px;
+      position: relative;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 700;
+      color: var(--burgundy-main);
+      opacity: 0.7;
+      margin-bottom: 12px;
+    }
+
+    .cream-editorial-section .mega-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5vw, 4.8rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--burgundy-main);
+      margin-bottom: 50px;
+    }
+
+    /* About Columns Layout */
+    .about-story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about-lead-text {
+      font-size: 1.35rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--burgundy-deep);
+    }
+
+    .about-lead-text strong {
+      font-weight: 700;
+      color: var(--burgundy-main);
+    }
+
+    /* Numbered Step Rows */
+    .numbered-steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .step-item {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 20px;
+      border-bottom: 1px solid var(--burgundy-border);
+      padding-bottom: 28px;
+      transition: transform 0.3s ease;
+    }
+
+    .step-item:hover {
+      transform: translateX(8px);
+    }
+
+    .step-number {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--burgundy-main);
+      opacity: 0.65;
+    }
+
+    .step-content h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--burgundy-main);
+      margin-bottom: 8px;
+    }
+
+    .step-content p {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #3b1116;
+    }
+
+    /* In-About Featured Quote/Image Banner */
+    .about-portrait-split {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 40px;
+      background: var(--burgundy-main);
+      border-radius: 20px;
+      padding: 30px;
+      color: var(--cream-main);
+      align-items: center;
+    }
+
+    .split-image-box {
+      width: 100%;
+      height: 280px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #2a080b;
+    }
+
+    .split-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .split-text-box h4 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      color: var(--cream-gold);
+    }
+
+    .split-text-box p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--cream-faded);
+      margin-bottom: 24px;
+    }
+
+    /* ==========================================================================
+       SECTION 3: TIMELINE / EXPERIENCE (YEAR TILES - FROM IMAGE)
+       ========================================================================== */
+    .experience-section {
+      margin-top: 24px;
+      background-color: var(--burgundy-main);
+      border-radius: var(--radius-editorial);
+      padding: 64px 48px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    .section-header-split {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--cream-border);
+      padding-bottom: 28px;
+      margin-bottom: 48px;
+    }
+
+    .section-header-split h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .section-header-split p {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--cream-faded);
+      max-width: 360px;
+      text-align: right;
+    }
+
+    /* Timeline Editorial Grid */
+    .timeline-editorial-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .timeline-tile {
+      background: var(--burgundy-card);
+      border: 1px solid var(--cream-border);
+      border-radius: 18px;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 290px;
+      position: relative;
+      transition: all 0.4s var(--transition-smooth);
+      cursor: pointer;
+    }
+
+    .timeline-tile:hover {
+      transform: translateY(-8px);
+      border-color: var(--cream-gold);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Special Featured Cream Highlight Tile (matches 2018 in reference) */
+    .timeline-tile.featured-cream {
+      background: var(--cream-main);
+      color: var(--burgundy-main);
+      border-color: var(--cream-main);
+    }
+
+    .timeline-tile.featured-cream .tile-year {
+      color: var(--burgundy-main);
+      opacity: 0.95;
+    }
+
+    .timeline-tile.featured-cream .tile-title {
+      color: var(--burgundy-deep);
+    }
+
+    .timeline-tile.featured-cream .tile-desc {
+      color: #3f1117;
+    }
+
+    .tile-year {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 3.8vw, 4rem);
+      font-weight: 900;
+      line-height: 1;
+      color: rgba(244, 232, 205, 0.45);
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+      transition: color 0.3s;
+    }
+
+    .timeline-tile:hover .tile-year {
+      color: var(--cream-gold);
+    }
+
+    .tile-title {
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream-main);
+      margin-bottom: 10px;
+    }
+
+    .tile-desc {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--cream-faded);
+    }
+
+    /* ==========================================================================
+       SECTION 4: FEATURED WORK / PROJECTS
+       ========================================================================== */
+    .works-section {
+      margin-top: 24px;
+      background-color: var(--cream-main);
+      color: var(--burgundy-main);
+      border-radius: var(--radius-editorial);
+      padding: 64px 48px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 36px;
+      margin-top: 40px;
+    }
+
+    .project-card {
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(73, 16, 24, 0.12);
+      transition: all 0.45s var(--transition-smooth);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 50px rgba(73, 16, 24, 0.16);
+    }
+
+    .project-preview {
+      width: 100%;
+      height: 270px;
+      background: var(--burgundy-main);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .project-card:hover .project-preview img {
+      transform: scale(1.05);
+    }
+
+    .project-tag {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: rgba(47, 10, 14, 0.85);
+      backdrop-filter: blur(8px);
+      color: var(--cream-main);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+    }
+
+    .project-info {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .project-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--burgundy-main);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .project-info p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #4f2128;
+      margin-bottom: 20px;
+    }
+
+    .project-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(73, 16, 24, 0.12);
+      padding-top: 18px;
+    }
+
+    .meta-tools {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--burgundy-main);
+      font-weight: 600;
+      opacity: 0.8;
+    }
+
+    .btn-view-project {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--burgundy-main);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-view-project:hover {
+      gap: 10px;
+      color: #000;
+    }
+
+    /* ==========================================================================
+       SECTION 5: SERVICES & SKILLS MATRIX
+       ========================================================================== */
+    .services-skills-section {
+      margin-top: 24px;
+      background-color: var(--burgundy-main);
+      border-radius: var(--radius-editorial);
+      padding: 64px 48px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .service-box {
+      background: var(--burgundy-card);
+      border: 1px solid var(--cream-border);
+      border-radius: 20px;
+      padding: 36px 30px;
+      transition: all 0.35s ease;
+      position: relative;
+    }
+
+    .service-box:hover {
+      background: var(--burgundy-hover);
+      transform: translateY(-6px);
+      border-color: var(--cream-gold);
+    }
+
+    .service-num {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--cream-gold);
+      margin-bottom: 20px;
+    }
+
+    .service-box h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      color: var(--cream-main);
+    }
+
+    .service-box p {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--cream-faded);
+      margin-bottom: 22px;
+    }
+
+    .service-box ul {
+      list-style: none;
+      border-top: 1px solid var(--cream-border);
+      padding-top: 16px;
+    }
+
+    .service-box li {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--cream-main);
+      padding: 5px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .service-box li::before {
+      content: '✦';
+      color: var(--cream-gold);
+      font-size: 0.7rem;
+    }
+
+    /* Skills Pill Marquee */
+    .skills-ticker-wrapper {
+      margin-top: 48px;
+      padding: 24px 0;
+      border-top: 1px solid var(--cream-border);
+      border-bottom: 1px solid var(--cream-border);
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .skills-ticker {
+      display: inline-flex;
+      gap: 32px;
+      animation: tickerScroll 28s linear infinite;
+    }
+
+    .skills-ticker:hover {
+      animation-play-state: paused;
+    }
+
+    .skill-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--cream-main);
+    }
+
+    .skill-chip .sep {
+      color: var(--cream-gold);
+      font-size: 1rem;
+    }
+
+    @keyframes tickerScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ==========================================================================
+       SECTION 6: "LET'S CREATE SOMETHING" (INTERACTIVE CONTACT FORM)
+       Matches the form layout from the image reference!
+       ========================================================================== */
+    .contact-editorial-section {
+      margin-top: 24px;
+      background-color: var(--burgundy-main);
+      border-radius: var(--radius-editorial);
+      padding: 68px 56px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    .contact-layout-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 60px;
+    }
+
+    .contact-left-col h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 4.8vw, 4.4rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      line-height: 0.95;
+      margin-bottom: 24px;
+    }
+
+    .contact-left-col p {
+      font-size: 0.96rem;
+      line-height: 1.6;
+      color: var(--cream-faded);
+      max-width: 420px;
+      margin-bottom: 36px;
+    }
+
+    .contact-direct-badges {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .direct-badge-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--cream-main);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      transition: color 0.25s ease;
+    }
+
+    .direct-badge-link:hover {
+      color: var(--cream-gold);
+    }
+
+    .badge-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--burgundy-card);
+      border: 1px solid var(--cream-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    /* Editorial Form Styling */
+    .editorial-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream-main);
+      opacity: 0.85;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--burgundy-card);
+      border: 1px solid var(--cream-border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: var(--cream-main);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(244, 232, 205, 0.4);
+      font-size: 0.88rem;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--cream-gold);
+      background: var(--burgundy-hover);
+      box-shadow: 0 0 0 3px rgba(255, 222, 158, 0.15);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-button-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 10px;
+    }
+
+    .btn-submit-action {
+      background: var(--cream-main);
+      color: var(--burgundy-deep);
+      border: none;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 14px 34px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.35s var(--transition-smooth);
+    }
+
+    .btn-submit-action:hover {
+      background: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    }
+
+    .btn-submit-action .arrow-bullet {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--burgundy-main);
+      color: var(--cream-main);
+      font-size: 0.7rem;
+    }
+
+    /* Toast Notification */
+    .toast-feedback {
+      display: none;
+      background: var(--cream-main);
+      color: var(--burgundy-deep);
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-top: 16px;
+      align-items: center;
+      gap: 10px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================================
+       SECTION 7: BOTTOM CALL TO ACTION & FOOTER
+       ========================================================================== */
+    .footer-editorial {
+      margin-top: 24px;
+      background-color: var(--burgundy-main);
+      border-radius: var(--radius-editorial);
+      padding: 72px 56px 40px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    .footer-cta-center {
+      text-align: center;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--cream-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer-cta-center h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4.5vw, 4rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+    }
+
+    .footer-links-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 36px;
+      padding-top: 48px;
+    }
+
+    .footer-col h5 {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-gold);
+      margin-bottom: 18px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col a {
+      color: var(--cream-faded);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.25s ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--cream-main);
+    }
+
+    .footer-bottom-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(244, 232, 205, 0.1);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: rgba(244, 232, 205, 0.5);
+    }
+
+    /* Modal for Quick Project Viewer */
+    .project-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 4, 6, 0.88);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .project-modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--burgundy-main);
+      border: 1px solid var(--cream-border);
+      border-radius: 24px;
+      max-width: 640px;
+      width: 100%;
+      padding: 40px;
+      position: relative;
+      color: var(--cream-main);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--cream-main);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1080px) {
+      .hero-content-grid {
+        grid-template-columns: 60px 1fr;
+      }
+      .hero-text-block {
+        grid-column: 1 / -1;
+        padding-left: 0;
+        margin-top: 20px;
+      }
+      .timeline-editorial-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .contact-layout-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .footer-links-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page-wrapper {
+        padding: 12px 10px 32px;
+      }
+      .hero-editorial-card,
+      .cream-editorial-section,
+      .experience-section,
+      .works-section,
+      .services-skills-section,
+      .contact-editorial-section,
+      .footer-editorial {
+        padding: 36px 22px;
+        border-radius: 20px;
+      }
+      .hero-content-grid {
+        grid-template-columns: 1fr;
+      }
+      .social-spine {
+        flex-direction: row;
+        border-right: none;
+        border-bottom: 1px solid var(--cream-border);
+        padding-right: 0;
+        padding-bottom: 16px;
+        height: auto;
+      }
+      .social-spine a {
+        writing-mode: horizontal-tb;
+        transform: none;
+      }
+      .nav-links {
+        display: none; /* Mobile menu collapsed for clean editorial look */
+      }
+      .about-story-grid {
+        grid-template-columns: 1fr;
+      }
+      .about-portrait-split {
+        grid-template-columns: 1fr;
+      }
+      .timeline-editorial-grid {
+        grid-template-columns: 1fr;
+      }
+      .works-grid {
+        grid-template-columns: 1fr;
+      }
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-row-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Subtle Atmospheric Film Grain Texture -->
+  <div class="film-grain" aria-hidden="true"></div>
+
+  <div class="page-wrapper">
+
+    <!-- ======================================================================
+         SECTION 1: HERO EDITORIAL MAROON CONTAINER
+         ====================================================================== -->
+    <header class="hero-editorial-card" id="hero">
+      
+      <!-- Top Navigation -->
+      <nav class="editorial-nav">
+        <a href="#hero" class="brand-logo">
+          <span>✕</span> JUDELYN<span class="dot">.</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#hero">Hero</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <a href="#work" class="btn-pill-cream">
+          <span>View My Work</span>
+          <span class="arrow-icon">↗</span>
+        </a>
+      </nav>
+
+      <!-- Main Hero Stage -->
+      <div class="hero-content-grid">
+        
+        <!-- Left Spine Social Links -->
+        <aside class="social-spine" aria-label="Social Channels">
+          <a href="https://pinterest.com" target="_blank" rel="noopener">PIN</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener">IN</a>
+          <a href="https://twitter.com" target="_blank" rel="noopener">X</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener">FB</a>
+        </aside>
+
+        <!-- Center: Hero Portrait Frame (points directly to photo.jpg) -->
+        <div class="hero-portrait-stage" id="portraitContainer">
+          
+          <img 
+            id="heroImageDisplay"
+            src="photo.jpg" 
+            alt="Judelyn E. Elvenia Portrait" 
+            class="portrait-image"
+            onerror="this.onerror=null; this.src='1e03cb7d1623c48ef30ded29c6f1bc52.webp';"
+          />
+
+          <!-- Circular Rotating Badge (NYC/Design Seal) -->
+          <div class="rotating-badge" title="Design & Creative Direction">
+            <svg viewBox="0 0 100 100">
+              <path id="circlePath" fill="none" stroke="none" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
+              <text font-size="10.8" font-family="'Space Grotesk', monospace" font-weight="700" letter-spacing="2.8">
+                <textPath href="#circlePath">✦ UI/UX DESIGNER ✦ CREATIVE DIRECTION ✦</textPath>
+              </text>
+            </svg>
+          </div>
+
+        </div>
+
+        <!-- Right: Bold Typography & Identity -->
+        <div class="hero-text-block">
+          <p class="hero-bio-caps">
+            I'M A CREATIVE UI/UX DESIGNER &amp; ART DIRECTOR FOCUSED ON BUILDING REFINED, PURPOSEFUL, AND VISUALLY ENGAGING DIGITAL EXPERIENCES.
+          </p>
+
+          <h1 class="hero-giant-title">
+            <span class="copyright-symbol">©</span>
+            <span class="name-highlight">JUDELYN</span>
+            <span class="name-highlight">ELVENIA</span>
+          </h1>
+
+          <div class="hero-tagline">
+            "Design is intellect made visible."
+          </div>
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- ======================================================================
+         SECTION 2: ABOUT ME (CREAM COLOR EDITORIAL BLOCK)
+         ====================================================================== -->
+    <section class="cream-editorial-section" id="about">
+      <div class="section-eyebrow">01 / DISCOVERY &amp; PHILOSOPHY</div>
+      <h2 class="mega-title">ABOUT ME</h2>
+
+      <div class="about-story-grid">
+        <div class="about-lead-col">
+          <p class="about-lead-text">
+            I believe meaningful design lives at the intersection of <strong>emotional elegance</strong> and <strong>flawless user utility</strong>. Over years of crafting interfaces, I have helped brands transform complex workflows into fluid digital sensations that captivate users and elevate business value.
+          </p>
+          <div style="margin-top: 36px;">
+            <a href="#contact" class="btn-pill-cream" style="background: var(--burgundy-main); color: var(--cream-main); border-color: var(--burgundy-main);">
+              <span>Get In Touch</span>
+              <span class="arrow-icon" style="background: var(--cream-main); color: var(--burgundy-main);">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 3 Numbered Steps -->
+        <div class="numbered-steps-list">
+          <div class="step-item">
+            <span class="step-number">01</span>
+            <div class="step-content">
+              <h3>Who I Am</h3>
+              <p>A passionate UI/UX Designer and Creative Director obsessed with typographic hierarchy, intentional micro-interactions, and high-impact digital experiences.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-number">02</span>
+            <div class="step-content">
+              <h3>My Journey</h3>
+              <p>Starting with digital branding and Figma systems, I evolved into leading end-to-end product design sprints, collaborating across cross-functional engineering teams worldwide.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-number">03</span>
+            <div class="step-content">
+              <h3>My Approach</h3>
+              <p>Every pixel must have a purpose. I combine thorough user research with bold artistic direction, crafting interfaces that don't just work smoothly—they leave a lasting impression.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- About Inset Split Banner -->
+      <div class="about-portrait-split">
+        <div class="split-image-box">
+          <img 
+            src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=700&q=80" 
+            alt="Design studio prototype" 
+          />
+        </div>
+        <div class="split-text-box">
+          <h4>DESIGN PROTOTYPE &amp; ART DIRECTION</h4>
+          <p>I carefully balance compelling visuals, crisp typography, and intuitive UX logic to deliver high-converting web apps and memorable luxury e-commerce platforms.</p>
+          <a href="#work" class="btn-view-project" style="color: var(--cream-gold);">
+            EXPLORE CASE STUDIES ↗
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================================
+         SECTION 3: EXPERIENCE / TIMELINE (YEAR TILES FROM REFERENCE)
+         ====================================================================== -->
+    <section class="experience-section" id="experience">
+      
+      <div class="section-header-split">
+        <div>
+          <div class="section-eyebrow" style="color: var(--cream-gold);">CAREER TRAJECTORY</div>
+          <h2>BUILT THROUGH<br/>EXPERIENCE</h2>
+        </div>
+        <p>A consistent evolution of craft, mastering emerging design tools, atomic design systems, and art direction.</p>
+      </div>
+
+      <div class="timeline-editorial-grid">
+        
+        <!-- 2016 -->
+        <div class="timeline-tile" onclick="openStoryModal('2016', 'The Genesis', 'Began exploring digital design, graphic composition, and foundational web layouts with hands-on HTML & CSS.')">
+          <div class="tile-year">2016</div>
+          <div>
+            <div class="tile-title">The Genesis</div>
+            <p class="tile-desc">Discovering digital art and foundational layouts. Sparked the passion for clean visual structures.</p>
+          </div>
+        </div>
+
+        <!-- 2018 (Featured Cream Highlight from reference) -->
+        <div class="timeline-tile featured-cream" onclick="openStoryModal('2018', 'Mastering Figma & UI Systems', 'Shifted deeply into modern interface design, pioneering component systems and high-fidelity wireframing.')">
+          <div class="tile-year">2018</div>
+          <div>
+            <div class="tile-title">Discovering Figma</div>
+            <p class="tile-desc">Embraced Figma and scalable design systems. Accelerated the speed from idea to interactive prototype.</p>
+          </div>
+        </div>
+
+        <!-- 2022 -->
+        <div class="timeline-tile" onclick="openStoryModal('2022', 'Defining the Signature Aesthetic', 'Developed a signature editorial visual language blending luxury minimalism with seamless responsive interactions.')">
+          <div class="tile-year">2022</div>
+          <div>
+            <div class="tile-title">Finding My Style</div>
+            <p class="tile-desc">Honed an unmistakable editorial voice—pairing brutalist typography with refined micro-interactions.</p>
+          </div>
+        </div>
+
+        <!-- 2026 -->
+        <div class="timeline-tile" onclick="openStoryModal('2026', 'Building with Purpose', 'Leading full creative direction, design systems, and bespoke digital products for forward-thinking clients.')">
+          <div class="tile-year">2026</div>
+          <div>
+            <div class="tile-title">Building With Purpose</div>
+            <p class="tile-desc">Delivering high-concept brand ecosystems, interactive web experiences, and immersive visual storytelling.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================================
+         SECTION 4: FEATURED WORK / PROJECTS
+         ====================================================================== -->
+    <section class="works-section" id="work">
+      <div class="section-eyebrow">PORTFOLIO HIGHLIGHTS</div>
+      <h2 class="mega-title" style="margin-bottom: 24px;">SELECTED WORKS</h2>
+      <p style="font-size: 1.1rem; color: #4b171e; max-width: 640px; margin-bottom: 40px;">
+        A curated showcase of design systems, web platforms, and brand identities engineered to engage and perform.
+      </p>
+
+      <div class="works-grid">
+        
+        <!-- Project 1 -->
+        <article class="project-card">
+          <div class="project-preview">
+            <span class="project-tag">E-Commerce &amp; UI</span>
+            <img 
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" 
+              alt="Lumière Atelier project" 
+            />
+          </div>
+          <div class="project-info">
+            <div>
+              <h3>Lumière Atelier</h3>
+              <p>End-to-end luxury e-commerce experience featuring dynamic product configurators and custom checkout journeys.</p>
+            </div>
+            <div class="project-meta-row">
+              <span class="meta-tools">Figma • Design System • Next.js</span>
+              <button class="btn-view-project" onclick="openStoryModal('Lumière Atelier', 'Luxury E-Commerce Interface', 'Designed a cohesive design system with over 200 components, resulting in a 42% increase in user session duration and seamless mobile responsiveness.')">
+                Case Study ↗
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card">
+          <div class="project-preview">
+            <span class="project-tag">SaaS Platform</span>
+            <img 
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" 
+              alt="Apex Analytics dashboard" 
+            />
+          </div>
+          <div class="project-info">
+            <div>
+              <h3>Apex Analytics</h3>
+              <p>Sophisticated data intelligence dashboard transforming complex enterprise metrics into intuitive, digestible visual widgets.</p>
+            </div>
+            <div class="project-meta-row">
+              <span class="meta-tools">UI/UX • Data Viz • Tailwind</span>
+              <button class="btn-view-project" onclick="openStoryModal('Apex Analytics', 'Enterprise Data Dashboard', 'Conducted 30+ stakeholder interviews to distill complex financial datasets into high-contrast data visualizers with customizable dark/light modules.')">
+                Case Study ↗
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card">
+          <div class="project-preview">
+            <span class="project-tag">Art Direction</span>
+            <img 
+              src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" 
+              alt="Velvet & Oak project" 
+            />
+          </div>
+          <div class="project-info">
+            <div>
+              <h3>Velvet &amp; Oak Identity</h3>
+              <p>Complete brand revitalization and digital guidelines for a sustainable luxury lifestyle magazine and boutique.</p>
+            </div>
+            <div class="project-meta-row">
+              <span class="meta-tools">Brand Identity • Editorial • Typography</span>
+              <button class="btn-view-project" onclick="openStoryModal('Velvet & Oak', 'Brand Revitalization', 'Crafted custom typographic scales, grid systems, and brand guidelines implemented across both physical editorial releases and digital publication hubs.')">
+                Case Study ↗
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project-card">
+          <div class="project-preview">
+            <span class="project-tag">Mobile Application</span>
+            <img 
+              src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80" 
+              alt="Komorebi Wellness app" 
+            />
+          </div>
+          <div class="project-info">
+            <div>
+              <h3>Komorebi Wellness</h3>
+              <p>Mindfulness &amp; meditation iOS app engineered with calming color theory, haptic feedback design, and progress milestones.</p>
+            </div>
+            <div class="project-meta-row">
+              <span class="meta-tools">iOS UX • Micro-interactions • Prototyping</span>
+              <button class="btn-view-project" onclick="openStoryModal('Komorebi Wellness', 'Mindfulness Mobile App', 'Created fluid micro-animations and zero-latency user flows resulting in a 4.9 App Store rating and featured design spotlight.')">
+                Case Study ↗
+              </button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================================
+         SECTION 5: SERVICES & SKILLS MATRIX
+         ====================================================================== -->
+    <section class="services-skills-section" id="services">
+      
+      <div class="section-header-split">
+        <div>
+          <div class="section-eyebrow" style="color: var(--cream-gold);">WHAT I DELIVER</div>
+          <h2>SERVICES &amp;<br/>EXPERTISE</h2>
+        </div>
+        <p>Combining design sensitivity with technological feasibility to create digital products that lead markets.</p>
+      </div>
+
+      <div class="services-grid">
+        
+        <!-- Service 1 -->
+        <div class="service-box">
+          <div class="service-num">01 // VISUAL</div>
+          <h3>UI / UX Design</h3>
+          <p>High-fidelity wireframes, interactive user flows, design systems, and rapid clickable prototypes tuned for conversion.</p>
+          <ul>
+            <li>User Journey Mapping</li>
+            <li>Wireframing &amp; Prototyping</li>
+            <li>Component Design Systems</li>
+            <li>Usability &amp; Accessibility (WCAG)</li>
+          </ul>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-box">
+          <div class="service-num">02 // IDENTITY</div>
+          <h3>Creative Direction</h3>
+          <p>Comprehensive visual identity design, art direction, and brand strategy that distinguishes you in crowded markets.</p>
+          <ul>
+            <li>Brand Architecture</li>
+            <li>Editorial &amp; Typography</li>
+            <li>Styleguides &amp; Guidelines</li>
+            <li>Digital Visual Assets</li>
+          </ul>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-box">
+          <div class="service-num">03 // CODE</div>
+          <h3>Design to Web</h3>
+          <p>Pixel-perfect translation of designs into accessible, responsive web code with smooth animations and lightning performance.</p>
+          <ul>
+            <li>Modern Responsive HTML/CSS</li>
+            <li>Micro-Interactions &amp; Motion</li>
+            <li>Mobile-First Optimizations</li>
+            <li>Cross-Browser Precision</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Endless Marquee Ticker of Skills -->
+      <div class="skills-ticker-wrapper" aria-label="Skills Marquee">
+        <div class="skills-ticker">
+          <span class="skill-chip">FIGMA <span class="sep">✦</span></span>
+          <span class="skill-chip">UI/UX DESIGN <span class="sep">✦</span></span>
+          <span class="skill-chip">DESIGN SYSTEMS <span class="sep">✦</span></span>
+          <span class="skill-chip">PROTOTYPING <span class="sep">✦</span></span>
+          <span class="skill-chip">CREATIVE DIRECTION <span class="sep">✦</span></span>
+          <span class="skill-chip">HTML5 &amp; CSS3 <span class="sep">✦</span></span>
+          <span class="skill-chip">RESPONSIVE DESIGN <span class="sep">✦</span></span>
+          <span class="skill-chip">WIREFRAMING <span class="sep">✦</span></span>
+          <span class="skill-chip">BRAND IDENTITY <span class="sep">✦</span></span>
+          
+          <!-- Duplicated for seamless infinite ticker -->
+          <span class="skill-chip">FIGMA <span class="sep">✦</span></span>
+          <span class="skill-chip">UI/UX DESIGN <span class="sep">✦</span></span>
+          <span class="skill-chip">DESIGN SYSTEMS <span class="sep">✦</span></span>
+          <span class="skill-chip">PROTOTYPING <span class="sep">✦</span></span>
+          <span class="skill-chip">CREATIVE DIRECTION <span class="sep">✦</span></span>
+          <span class="skill-chip">HTML5 &amp; CSS3 <span class="sep">✦</span></span>
+          <span class="skill-chip">RESPONSIVE DESIGN <span class="sep">✦</span></span>
+          <span class="skill-chip">WIREFRAMING <span class="sep">✦</span></span>
+          <span class="skill-chip">BRAND IDENTITY <span class="sep">✦</span></span>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================================
+         SECTION 6: "LET'S CREATE SOMETHING" (INTERACTIVE FORM FROM REFERENCE)
+         ====================================================================== -->
+    <section class="contact-editorial-section" id="contact">
+      
+      <div class="contact-layout-grid">
+        
+        <!-- Left Column: Reference Layout -->
+        <div class="contact-left-col">
+          <div class="section-eyebrow" style="color: var(--cream-gold);">START A CONVERSATION</div>
+          <h2>LET'S CREATE<br/>SOMETHING</h2>
+          <p>
+            Have a project in mind, a creative idea to explore, or simply want to connect? I'd love to hear what you're working on.
+          </p>
+
+          <div class="contact-direct-badges">
+            <a href="mailto:judelyn.elvenia@example.com" class="direct-badge-link">
+              <span class="badge-icon">✉</span>
+              <span>judelyn.elvenia@example.com</span>
+            </a>
+            <a href="tel:+639123456789" class="direct-badge-link">
+              <span class="badge-icon">📞</span>
+              <span>+63 (912) 345-6789</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Form -->
+        <div class="contact-form-container">
+          <form class="editorial-form" id="contactForm" onsubmit="handleFormSubmit(event)">
+            
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="fullName">FULL NAME *</label>
+                <input type="text" id="fullName" name="fullName" placeholder="e.g. Eleanor Vance" required />
+              </div>
+              <div class="form-group">
+                <label for="emailAddress">EMAIL ADDRESS *</label>
+                <input type="email" id="emailAddress" name="emailAddress" placeholder="e.g. eleanor@studio.com" required />
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="projectName">PROJECT TYPE *</label>
+                <select id="projectName" name="projectName" required>
+                  <option value="" disabled selected>Select an engagement</option>
+                  <option value="UI/UX Design Sprint">UI/UX Design Sprint</option>
+                  <option value="Brand Identity & Direction">Brand Identity &amp; Direction</option>
+                  <option value="Complete Website Design">Complete Website Design</option>
+                  <option value="Design System Consulting">Design System Consulting</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="budgetRange">BUDGET RANGE *</label>
+                <select id="budgetRange" name="budgetRange" required>
+                  <option value="" disabled selected>Select estimated budget</option>
+                  <option value="$1,500 - $3,000">$1,500 – $3,000</option>
+                  <option value="$3,000 - $7,000">$3,000 – $7,000</option>
+                  <option value="$7,000 - $15,000+">$7,000 – $15,000+</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="projectDetails">PROJECT DETAILS *</label>
+              <textarea id="projectDetails" name="projectDetails" placeholder="Tell me about your vision, goals, and timeline..." required></textarea>
+            </div>
+
+            <div class="submit-button-container">
+              <button type="submit" class="btn-submit-action" id="submitBtn">
+                <span>SUBMIT NOW</span>
+                <span class="arrow-bullet">➔</span>
+              </button>
+            </div>
+
+            <!-- Interactive Toast Notification upon form submission -->
+            <div class="toast-feedback" id="formToast" role="alert">
+              <span>✦</span> Thank you! Your message has been received. Judelyn will get back to you shortly.
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================================
+         SECTION 7: FOOTER "LET'S BRING IDEAS TO LIFE"
+         ====================================================================== -->
+    <footer class="footer-editorial">
+      
+      <div class="footer-cta-center">
+        <h2>LET'S BRING<br/>IDEAS TO LIFE</h2>
+        <a href="#contact" class="btn-pill-cream" style="margin-top: 14px;">
+          <span>CONTACT ME NOW</span>
+          <span class="arrow-icon">→</span>
+        </a>
+      </div>
+
+      <div class="footer-links-grid">
+        
+        <div class="footer-col">
+          <h5>ESSENTIALS</h5>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#work">My Work</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>SERVICES</h5>
+          <ul>
+            <li><a href="#services">Web Design</a></li>
+            <li><a href="#services">UI/UX Design</a></li>
+            <li><a href="#services">Responsive Design</a></li>
+            <li><a href="#services">Figma Systems</a></li>
+            <li><a href="#services">Visual Direction</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>SOCIAL</h5>
+          <ul>
+            <li><a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://twitter.com" target="_blank" rel="noopener">X / Twitter</a></li>
+            <li><a href="https://behance.net" target="_blank" rel="noopener">Behance</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>IDENTITY</h5>
+          <p style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--cream-faded); line-height: 1.6;">
+            Judelyn E. Elvenia<br/>
+            UI/UX Designer &amp; Creative Director<br/>
+            Available for remote contracts and bespoke design commissions.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 JUDELYN E. ELVENIA. ALL RIGHTS RESERVED.</div>
+        <div>TERMS &amp; CONDITIONS &nbsp;•&nbsp; PRIVACY POLICY</div>
+      </div>
+
+    </footer>
+
+  </div>
+
+
+  <!-- ======================================================================
+       INTERACTIVE STORY / CASE STUDY MODAL
+       ====================================================================== -->
+  <div class="project-modal" id="storyModal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeStoryModal()" aria-label="Close modal">✕</button>
+      <div id="modalYearOrTag" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--cream-gold); margin-bottom: 8px;"></div>
+      <h3 id="modalTitle" style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; text-transform: uppercase; margin-bottom: 16px;"></h3>
+      <p id="modalDescription" style="font-size: 1.05rem; line-height: 1.65; color: var(--cream-faded); margin-bottom: 24px;"></p>
+      <button class="btn-pill-cream" onclick="closeStoryModal()">
+        <span>Done Reading</span>
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ======================================================================
+       JAVASCRIPT FOR SMOOTH INTERACTIONS & BUTTONS
+       ====================================================================== -->
+  <script>
+    // 1. Handle Contact Form Submission
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('submitBtn');
+      const toast = document.getElementById('formToast');
+      
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>SENDING...</span> <span>⏳</span>';
+
+      setTimeout(() => {
+        submitBtn.innerHTML = '<span>SUBMITTED!</span> <span>✓</span>';
+        submitBtn.style.background = '#85E396';
+        toast.style.display = 'flex';
+        
+        // Reset form fields
+        document.getElementById('contactForm').reset();
+
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<span>SUBMIT NOW</span> <span class="arrow-bullet">➔</span>';
+          submitBtn.style.background = 'var(--cream-main)';
+        }, 4000);
+      }, 900);
+    }
+
+    // 2. Interactive Modal for Projects & Timeline Milestones
+    function openStoryModal(tag, title, desc) {
+      document.getElementById('modalYearOrTag').innerText = tag;
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalDescription').innerText = desc;
+      document.getElementById('storyModal').classList.add('active');
+    }
+
+    function closeStoryModal() {
+      document.getElementById('storyModal').classList.remove('active');
+    }
+
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === 'storyModal') {
+        closeStoryModal();
+      }
+    }
+
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeStoryModal();
+    });
+  </script>
+
+</body>
+</html>
